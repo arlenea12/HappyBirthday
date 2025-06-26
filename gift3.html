@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You’re the Best!</title>
+  <style>
+/* ----- Background Styling ----- */
+body {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #eef7fd, #e9f5ff);
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('./stackedcards.png');
+  background-repeat: repeat;
+  background-size: contain;
+  filter: blur(1px);
+  opacity: .25;
+  z-index: -1;
+  animation: twinkle 6s infinite ease-in-out;
+}
+
+/* ----- Card Styling ----- */
+.pokemon-card {
+  width: 440px;
+  background: linear-gradient(145deg, #e7f5fd, #f0faff);
+  border: 6px solid #87c5eb;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.2);
+  padding: 16px;
+  position: relative;
+  animation: float 3s ease-in-out infinite, glow 2.5s ease-in-out infinite;
+  overflow: hidden;
+}
+
+/* Holographic Shine */
+.pokemon-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  transform: rotate(25deg);
+  animation: shine 5s infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ----- Header ----- */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.8em;
+  color: #438bbd;
+  margin-bottom: 8px;
+}
+
+.hp {
+  font-size: 1em;
+  color: #f18989;
+}
+
+/* ----- Image ----- */
+.card-image {
+  width: 100%;
+  height: 260px;
+  background: #fff;
+  border-radius: 12px;
+  margin: 8px 0 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+}
+
+/* ----- Description ----- */
+.description {
+  background: #f8fcff;
+  border: 1px solid #87c5eb;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 1em;
+  line-height: 1.5;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+/* ----- Stats ----- */
+.stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 8px;
+  flex-wrap: nowrap;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* ----- Footer ----- */
+.footer {
+  text-align: center;
+  font-size: 0.8em;
+  color: #aaa;
+  margin-top: 6px;
+}
+
+/* ----- Back Button ----- */
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #87c5eb;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-button:hover {
+  background-color: #438bbd;
+  transform: scale(1.05);
+}
+
+/* ----- Animations ----- */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 15px rgba(135, 197, 235, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(135, 197, 235, 0.6); }
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(100%) rotate(25deg); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.4; }
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- Back to Gift Boxes Button -->
+  <a href="index.html" class="back-button">← Back to Gift Boxes</a>
+
+  <!-- Cute Pokemon Card -->
+  <div class="pokemon-card">
+
+    <div class="card-header">
+      <span>You’re the Best</span>
+      <span class="hp">HP 70</span>
+    </div>
+
+    <div class="card-image">
+      <img src="./jumping.gif" alt="Jumping Gif">
+    </div>
+
+    <div class="description">
+      <strong>Radiance Boost</strong> – You have this gentle, captivating energy that draws people in. Like spotting a star in the distance, something about you just makes people want to get closer, and when they do, they’re never disappointed. At least I wasn’t. Thank you for giving me the opportunity to get to know you!<br><br>
+      <strong>Effect:</strong> +100 Comfort. +Unmatched Presence.
+    </div>
+
+    <div class="stats">
+      <span>Weakness: None</span>
+      <span>Resistance: &gt; than radiant</span>
+      <span>Retreat Cost: High</span>
+    </div>
+
+    <div class="footer">
+      Blue is the best color btw
+    </div>
+
+  </div>
+
+</body>
+</html>

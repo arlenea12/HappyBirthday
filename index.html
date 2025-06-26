@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gift Boxes</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(270deg, #3b4cca, #ffcb05, #cc0000, #3b4cca);
+  background-size: 600% 600%;
+  animation: gradientShift 15s ease infinite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+@keyframes gradientShift {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.instructions {
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.instructions h1 {
+  font-size: 2em;
+  margin: 0;
+  text-shadow: 0 0 8px rgba(0,0,0,0.7);
+}
+
+.instructions p {
+  margin-top: 8px;
+  font-size: 1em;
+  color: #f8f8f8;
+  text-shadow: 0 0 6px rgba(0,0,0,0.6);
+}
+
+.box-wrapper {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.box-container {
+  position: relative;
+  width: 300px;
+  height: 220px;
+  perspective: 1000px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #fefefe, #ececec);
+  border: 5px solid #ffcb05;
+  border-radius: 14px;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+.lid {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to right, #cc0000, #ff0000);
+  top: 0;
+  left: 0;
+  transform-origin: top center;
+  transition: transform 1.2s ease;
+  border-bottom: 4px solid black;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  z-index: 3;
+}
+
+.ribbon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: black;
+  transform: translateY(-50%);
+  z-index: 2;
+  transition: opacity 0.5s ease, transform 0.8s ease;
+}
+
+.circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: white;
+  border: 5px solid black;
+  border-radius: 50%;
+  z-index: 3;
+  transition: opacity 0.5s ease;
+}
+
+.inner-circle {
+  width: 30px;
+  height: 30px;
+  background: #ccc;
+  border: 4px solid black;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.message {
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  border: 3px solid #3b4cca;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  opacity: 0;
+  transition: opacity 1s ease, top 1.2s ease;
+  z-index: 2;
+  text-align: center;
+}
+
+.message h2 {
+  color: #3b4cca;
+  margin: 6px 0;
+}
+
+.message p {
+  color: #333;
+  margin: 6px 0 0;
+}
+
+.message a {
+  display: inline-block;
+  margin-top: 14px;
+  background: #ffcb05;
+  color: #3b4cca;
+  padding: 8px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s, color 0.3s;
+}
+
+.message a:hover {
+  background: #3b4cca;
+  color: white;
+}
+
+/* OPEN STATE ANIMATIONS */
+.box-container.open .lid {
+  transform: rotateX(-130deg);
+}
+
+.box-container.open .message {
+  opacity: 1;
+  top: 10%;
+}
+
+.box-container.open .circle {
+  opacity: 0;
+}
+
+.box-container.open .ribbon {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.click-text {
+  position: absolute;
+  bottom: -40px;
+  width: 100%;
+  text-align: center;
+  color: #eee;
+  font-size: 0.9em;
+  animation: bounce 1.5s infinite;
+  text-shadow: 0 0 8px rgba(255, 203, 5, 0.9);
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0);}
+  50% { transform: translateY(-5px);}
+}
+</style>
+</head>
+<body>
+
+<div class="instructions">
+  <h1>Choose a Box</h1>
+  <p>Tap on any gift box to reveal your surprise.</p>
+</div>
+
+<div class="box-wrapper">
+
+  <!-- BOX 1 -->
+  <div class="box-container" onclick="openBox(this)">
+    <div class="box">
+      <div class="lid"></div>
+      <div class="ribbon"></div>
+      <div class="circle"><div class="inner-circle"></div></div>
+      <div class="message">
+        <h2>Mystery Surprise</h2>
+        <p>Happy birthday to the prettiest girl <3 </p>
+        <a href="gift1.html">Open first (please)</a>
+      </div>
+    </div>
+    <div class="click-text">Tap to Open</div>
+  </div>
+
+  <!-- BOX 2 -->
+  <div class="box-container" onclick="openBox(this)">
+    <div class="box">
+      <div class="lid"></div>
+      <div class="ribbon"></div>
+      <div class="circle"><div class="inner-circle"></div></div>
+      <div class="message">
+        <h2>Mystery Surprise</h2>
+        <p>Crossing my fingers that you are enjoying this.</p>
+        <a href="gift2.html">Open present</a>
+      </div>
+    </div>
+    <div class="click-text">Tap to Open</div>
+  </div>
+
+  <!-- BOX 3 -->
+  <div class="box-container" onclick="openBox(this)">
+    <div class="box">
+      <div class="lid"></div>
+      <div class="ribbon"></div>
+      <div class="circle"><div class="inner-circle"></div></div>
+      <div class="message">
+        <h2>Mystery Surprise</h2>
+        <p>Are you tired of surprises yet? You are almost done.</p>
+        <a href="gift3.html">Open present</a>
+      </div>
+    </div>
+    <div class="click-text">Tap to Open</div>
+  </div>
+
+
+  <!-- BOX 4 -->
+  <div class="box-container" onclick="openBox(this)">
+    <div class="box">
+      <div class="lid"></div>
+      <div class="ribbon"></div>
+      <div class="circle"><div class="inner-circle"></div></div>
+      <div class="message">
+        <h2>Mystery Surprise</h2>
+        <p>You know what they say? Save the best for last.</p>
+        <a href="gift4.html">Open last (please)</a>
+      </div>
+    </div>
+    <div class="click-text">Tap to Open</div>
+  </div>
+  
+<script>
+function openBox(element) {
+  element.classList.add('open');
+}
+</script>
+
+</body>
+</html>
